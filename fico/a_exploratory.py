@@ -1,3 +1,5 @@
+"""Este é um módulo módulo auxiliar no qual a análise exploratória é realizada."""
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -6,7 +8,7 @@ import pandas as pd
 def analyze_investments():
     """Realiza análises de investimentos em diferentes tipos de ativos."""
     # Importa os dados relativos aos investimentos sujeitos à variação cambial
-    dados_fx = pd.read_csv("FX.csv")
+    dados_fx = pd.read_csv("fx.csv")
 
     # Converte a informação de data para o formato data do python
     dados_fx["Data"] = pd.to_datetime(dados_fx["Data"])
@@ -15,10 +17,10 @@ def analyze_investments():
     dados_fx = dados_fx.set_index("Data")
 
     # Importa os dados relativos aos investimentos de renda variável
-    dados_rv = pd.read_csv("RV.csv")
+    dados_rv = pd.read_csv("rv.csv")
 
     # Importa os dados relativos aos investimentos de renda fixa
-    dados_imob = pd.read_csv("IMOB.csv")
+    dados_imob = pd.read_csv("imob.csv")
 
     analyze_fx(dados_fx)
     analyze_rv(dados_rv)
@@ -29,7 +31,8 @@ def analyze_fx(dados_fx):
     """Realiza análise para investimentos sujeitos à variação cambial.
 
     Args:
-        dados_fx (pandas.DataFrame): Dados relativos aos investimentos sujeitos à variação cambial.
+        dados_fx (pandas.DataFrame): Dados relativos aos investimentos sujeitos à
+        variação cambial.
     """
     # Plotar a série temporal
     plt.plot(dados_fx)
@@ -48,7 +51,7 @@ def analyze_rv(dados_rv):
     """Realiza análise para investimentos de renda variável.
 
     Args:
-        dados_rv (pandas.DataFrame): Dados relativos aos investimentos de renda variável.
+        dados_rv (pandas.DataFrame): Dados de investimentos de renda variável.
     """
     # Configurar DataFrame
     dados = pd.DataFrame(dados_rv)

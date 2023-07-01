@@ -1,3 +1,6 @@
+"""Este é o módulo auxiliar no qual o algoritmo genético é definido."""
+
+
 import numpy as np
 
 
@@ -25,103 +28,140 @@ def cal_pop_fitness(equation_inputs, pop, valor_investir, vencimento, pagamento)
     sol_per_pop = len(pop)
 
     # Calcula o limite de investimento para cada tipo de investimento na população
-    lim_rv = np.empty((sol_per_pop, 1))
-    for i in range(0, sol_per_pop):
-        lim_rv[i] = sum(pop[i][0:pos_rv])
 
-    lim_im = np.empty((sol_per_pop, 1))
-    for i in range(0, sol_per_pop):
-        lim_im[i] = sum(pop[i][pos_rv:pos_im])
+    lim_rv = np.sum(pop[:, :pos_rv], axis=1)
+    lim_im = np.sum(pop[:, pos_rv:pos_im], axis=1)
+    lim_rf = np.sum(pop[:, pos_im:pos_rf], axis=1)
+    lim_fx = np.sum(pop[:, pos_rf:pos_fx], axis=1)
 
-    lim_rf = np.empty((sol_per_pop, 1))
-    for i in range(0, sol_per_pop):
-        lim_rf[i] = sum(pop[i][pos_im:pos_rf])
+    # lim_rv = np.empty((sol_per_pop, 1))
+    # for i in range(sol_per_pop):
+    #    lim_rv[i] = sum(pop[i][:pos_rv])
 
-    lim_fx = np.empty((sol_per_pop, 1))
-    for i in range(0, sol_per_pop):
-        lim_fx[i] = sum(pop[i][pos_rf:pos_fx])
+    # lim_im = np.empty((sol_per_pop, 1))
+    # for i in range(sol_per_pop):
+    #    lim_im[i] = sum(pop[i][pos_rv:pos_im])
+
+    # lim_rf = np.empty((sol_per_pop, 1))
+    # for i in range(sol_per_pop):
+    #    lim_rf[i] = sum(pop[i][pos_im:pos_rf])
+
+    # lim_fx = np.empty((sol_per_pop, 1))
+    # for i in range(sol_per_pop):
+    #    lim_fx[i] = sum(pop[i][pos_rf:pos_fx])
 
     # Calcula as penalidades para cada tipo de investimento na população
-    pen_rf = np.empty((sol_per_pop, 1))
-    pen_rv = np.empty((sol_per_pop, 1))
-    pen_im = np.empty((sol_per_pop, 1))
-    pen_fx = np.empty((sol_per_pop, 1))
+    # pen_rf = np.empty((sol_per_pop, 1))
+    # pen_rv = np.empty((sol_per_pop, 1))
+    # pen_im = np.empty((sol_per_pop, 1))
+    # pen_fx = np.empty((sol_per_pop, 1))
 
-    for i in range(0, sol_per_pop):
-        pen_rf[i] = max(0, (lim_rf[i]) - valor_investir)
-        pen_rv[i] = max(0, (lim_rv[i]) - valor_investir * 0.1)
-        pen_im[i] = max(0, (lim_im[i]) - valor_investir * 0.2)
-        pen_fx[i] = max(0, (lim_fx[i]) - valor_investir * 0.10)
+    # for i in range(sol_per_pop):
+    #    pen_rf[i] = max(0, (lim_rf[i]) - valor_investir)
+    #    pen_rv[i] = max(0, (lim_rv[i]) - valor_investir * 0.1)
+    #    pen_im[i] = max(0, (lim_im[i]) - valor_investir * 0.2)
+    #    pen_fx[i] = max(0, (lim_fx[i]) - valor_investir * 0.10)
+
+    pen_rf = np.maximum(0, lim_rf - valor_investir)
+    pen_rv = np.maximum(0, lim_rv - valor_investir * 0.1)
+    pen_im = np.maximum(0, lim_im - valor_investir * 0.2)
+    pen_fx = np.maximum(0, lim_fx - valor_investir * 0.10)
 
     # Aplica as penalidades ao valor fitness
-    for i in range(0, sol_per_pop):
-        fitness[i] -= pen_rf[i]
+    # for i in range(sol_per_pop):
+    #    fitness[i] -= pen_rf[i]
 
-    for i in range(0, sol_per_pop):
-        fitness[i] -= pen_rv[i]
+    # for i in range(sol_per_pop):
+    #    fitness[i] -= pen_rv[i]
 
-    for i in range(0, sol_per_pop):
-        fitness[i] -= pen_im[i]
+    # for i in range(sol_per_pop):
+    #    fitness[i] -= pen_im[i]
 
-    for i in range(0, sol_per_pop):
-        fitness[i] -= pen_fx[i]
+    # for i in range(sol_per_pop):
+    #    fitness[i] -= pen_fx[i]
+
+    fitness -= pen_rf
+    fitness -= pen_rv
+    fitness -= pen_im
+    fitness -= pen_fx
 
     # Segunda restrição
-    pen_total = np.empty((sol_per_pop, 1))
+    # pen_total = np.empty((sol_per_pop, 1))
 
-    for i in range(0, sol_per_pop):
-        pen_total[i] = max(0, (sum(pop[i])) - valor_investir)
+    # for i in range(sol_per_pop):
+    #    pen_total[i] = max(0, (sum(pop[i])) - valor_investir)
 
-    for i in range(0, sol_per_pop):
-        fitness[i] -= pen_total[i]
+    # for i in range(sol_per_pop):
+    #    fitness[i] -= pen_total[i]
+
+    pen_total = np.maximum(0, np.sum(pop, axis=1) - valor_investir)
+    fitness -= pen_total
 
     # TERCEIRA RESTRIÇÃO
-    fluxo_saida = np.empty((12, 1))
+    # fluxo_saida = np.empty((12, 1))
 
-    num_weights = len(equation_inputs)
-    for t in range(0, 12):
-        fluxo_saida[t] = pagamento[t] * valor_investir
+    # num_weights = len(equation_inputs)
+    # for t in range(12):
+    #    fluxo_saida[t] = pagamento[t] * valor_investir
 
+    # rend_mes = np.zeros((sol_per_pop, 12))
+
+    # for t, i, j in itertools.product(range(12), range(sol_per_pop), range(num_weights)
+    #    if vencimento[j] == t:
+    #        rend_mes[i, t] += pop[i][j] * equation_inputs[j] + pop[i][j]
+
+    # pen_tempo = np.empty(sol_per_pop)
+
+    # for i, t in itertools.product(range(sol_per_pop), range(12)):
+    #    pen_tempo[i] = abs(rend_mes[i, t] - fluxo_saida[t])
+
+    # for i in range(sol_per_pop):
+    #    fitness[i] -= pen_tempo[i]
+
+    fluxo_saida = pagamento * valor_investir
     rend_mes = np.zeros((sol_per_pop, 12))
 
-    for t in range(0, 12):  # tempo
-        for i in range(0, sol_per_pop):  # indivíduo
-            for j in range(0, num_weights):  # genes
-                if vencimento[j] == t:
-                    rend_mes[i, t] += pop[i][j] * equation_inputs[j] + pop[i][j]
+    for t in range(12):
+        mask = vencimento == t
+        rend_mes[:, t] += (pop[:, mask].sum(axis=1) * equation_inputs[mask]) + (
+            pop[:, mask].sum(axis=1)
+        )
 
-    pen_tempo = np.empty(sol_per_pop)
-
-    for i in range(0, sol_per_pop):
-        for t in range(0, 12):
-            pen_tempo[i] = abs(rend_mes[i, t] - fluxo_saida[t])
-
-    for i in range(0, sol_per_pop):
-        fitness[i] -= pen_tempo[i]
+    pen_tempo = np.abs(rend_mes - fluxo_saida.reshape(1, -1))
+    fitness -= np.sum(pen_tempo, axis=1)
 
     # Quarta restrição
 
-    pen_div_rv = np.zeros((sol_per_pop, 1))
-    for i in range(0, sol_per_pop):
-        for j in range(0, pos_rv):
-            pen_div_rv[i] += max(0, pop[i][j] - 0.00005 * valor_investir)
+    # pen_div_rv = np.zeros((sol_per_pop, 1))
+    # for i, j in itertools.product(range(sol_per_pop), range(pos_rv)):
+    #    pen_div_rv[i] += max(0, pop[i][j] - 0.00005 * valor_investir)
 
-    for i in range(0, sol_per_pop):
-        fitness[i] -= pen_div_rv[i]
+    # for i in range(sol_per_pop):
+    #    fitness[i] -= pen_div_rv[i]
 
-    pen_div_im = np.zeros((sol_per_pop, 1))
-    for i in range(0, sol_per_pop):
-        for j in range(pos_rv, pos_im):
-            pen_div_im[i] += max(0, pop[i][j] - 0.00005 * valor_investir)
+    # pen_div_im = np.zeros((sol_per_pop, 1))
+    # for i, j in itertools.product(range(sol_per_pop), range(pos_rv, pos_im)):
+    #    pen_div_im[i] += max(0, pop[i][j] - 0.00005 * valor_investir)
 
-    for i in range(0, sol_per_pop):
-        fitness[i] -= pen_div_im[i]
+    # for i in range(sol_per_pop):
+    #    fitness[i] -= pen_div_im[i]
+
+    pen_div_rv = np.maximum(
+        0,
+        np.sum(pop[:, :pos_rv], axis=1) - 0.00005 * valor_investir,
+    )
+    pen_div_im = np.maximum(
+        0,
+        np.sum(pop[:, pos_rv:pos_im], axis=1) - 0.00005 * valor_investir,
+    )
+    fitness -= pen_div_rv
+    fitness -= pen_div_im
 
     return fitness
 
 
 def select_mating_pool(pop, fitness, num_parents):
-    """Seleciona os melhores indivíduos da geração atual como pais para produzir a descendência da próxima geração.
+    """Seleciona os melhores indivíduos da geração atual como pais.
 
     Args:
         pop (np.ndarray): População atual.
@@ -138,7 +178,8 @@ def select_mating_pool(pop, fitness, num_parents):
         max_fitness_idx = max_fitness_idx[0][0]
         # Seleciona o indivíduo como pai e o adiciona à lista de pais
         parents[parent_num, :] = pop[max_fitness_idx, :]
-        # Define um valor muito baixo para o valor fitness do indivíduo selecionado, para não ser selecionado novamente
+        # Define um valor muito baixo para o valor fitness do indivíduo selecionado,
+        # para não ser selecionado novamente
         fitness[max_fitness_idx] = -99999999999
     return parents
 
@@ -164,7 +205,7 @@ def crossover(parents, offspring_size):
         parent2_idx = (k + 1) % parents.shape[0]
         # A nova descendência terá metade de seus genes retirados do primeiro pai.
         offspring[k, 0:crossover_point] = parents[parent1_idx, 0:crossover_point]
-        # A nova descendência terá a outra metade de seus genes retirados do segundo pai.
+        # Nova descendência terá a outra metade de seus genes retirados do segundo pai.
         offspring[k, crossover_point:] = parents[parent2_idx, crossover_point:]
     return offspring
 
@@ -180,12 +221,15 @@ def mutation(offspring_crossover, num_mutations=1):
         np.ndarray: Descendência após a mutação.
     """
     mutations_counter = np.uint8(offspring_crossover.shape[1] / num_mutations)
-    # A mutação altera um número de genes definido pelo argumento num_mutations. As alterações são aleatórias.
+    # A mutação altera um número de genes definido pelo argumento num_mutations.
+    # As alterações são aleatórias.
     for idx in range(offspring_crossover.shape[0]):
         gene_idx = mutations_counter - 1
         for _mutation_num in range(num_mutations):
             # O valor aleatório a ser adicionado ao gene.
-            random_value = np.random.uniform(-10.0, 10.0, 1)
+            rng = np.random.default_rng()
+            random_value = rng.uniform(-10.0, 10.0, 1)
+
             offspring_crossover[idx, gene_idx] = (
                 offspring_crossover[idx, gene_idx] + random_value
             )

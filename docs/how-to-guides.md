@@ -1,39 +1,49 @@
-This part of the project documentation focuses on a
-**problem-oriented** approach. You'll tackle common
-tasks that you might have, with the help of the code
-provided in this project.
+Esta parte da documentação do projeto centra-se numa
+**abordagem orientada para os problemas**. Irá lidar com tarefas
+tarefas comuns que você pode ter, com a ajuda do código
+fornecido neste projeto.
 
-## How To Add Two Numbers?
+## How To: Atualizar a curva de pagamentos?
 
-You have two numbers and you need to add them together.
-You're in luck! The `calculator` package can help you
-get this done.
+No módulo principal *alm_insurance.py*, insira os novos valores na variável **pagamento** para os 12 meses considerados. Caso a opção seja a geração estocástica de valores, modifique também esta variável.
 
-Download the code from this GitHub repository and place
-the `calculator/` folder in the same directory as your
-Python script:
+    # alm_insurance.py
+    pagamento = [0.29, 0.20, 0.12, 0.07, 0.06, 0.05, 0.07, 0.06, 0.04, 0.01, 0.02, 0.01]
 
-    your_project/
-    │
-    ├── calculator/
-    │   ├── __init__.py
-    │   └── calculations.py
-    │
-    └── your_script.py
+## How To: Atualizar os dados dos ativos?
 
-Inside of `your_script.py` you can now import the
-`add()` function from the `calculator.calculations`
-module:
+Ainda no mesmo módulo principal *alm_insurance.py*, altere o arquivo csv *assets_inputs.csv* contendo as novas informações de nome de ativo, vencimento e rentabilidade.
 
-    # your_script.py
-    from calculator.calculations import add
+    # alm_insurance.py
 
-After you've imported the function, you can use it to add any two numbers that you need
-to add:
+    dados_ativos = pd.read_csv("assets_inputs.csv")
 
-    # your_script.py
-    from calculator.calculations import add
+    vencimento = list(dados_ativos["Vencimento"])
 
-    print(add(20, 22))  # OUTPUT: 42.0
+    equation_inputs = list(dados_ativos["Rentabilidade"])
 
-You're now able to add any two numbers, and you'll always get a `float` as a result.
+## How to: Alterar o valor disponível a ser investido?
+
+Seguindo no módulo principal *alm_insurance.py*, altere o valor da variável *valor_investir* para o valor desejado.
+
+    # alm_insurance.py
+
+    valor_investir = 1461073
+
+## How to: Alterar os parâmetros do Algoritmo Genético?
+
+considerando o módulo *alm_insurance.py*, altere os parâmetros:
+
+1. sol_per_pop: caso queria alterar a quantidade de soluções por população;
+1. num_parents_mating: caso queia alterar a quantidade de pais selecionados;
+1. n_mut: a quantidade de mutações definida;
+1. num_generations: a quantidade máxima de gerações;
+1. valor_max: o valor máximo a ser alocado em cada alternativa de investimentos.
+
+        # alm_insurance.py
+
+        sol_per_pop = 20
+        num_parents_mating = 8
+        n_mut = 20
+        num_generations = 100
+        valor_max = 4000000
