@@ -1,0 +1,12 @@
+cff-version: 1.0.0
+type: generic
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "S. José"
+  given-names: "Paulo"
+  orcid: "https://orcid.org/0000-0000-0000-0000"
+title: "Insurance Asset Liability Management: uma aplicação de Algoritmos Genéticos à estruturação de estratégia de investimentos para o setor de seguros"
+version: 0.1.0
+date-released: 2023-06-26
+url: "https://github.com/fico-ita/po_245_2023_T2"
+doi: "10.5281/zenodo.0000000"
