@@ -39,4 +39,16 @@ O autor do projeto deixa registrado os agradecimentos aos professores da discipl
 
 Dado que este projeto foi desenvolvido para fins acadêmicos e de pesquisa, é de extrema importância que a citação seja realizada:
 
-José, P.S.(2023), Insurance Asset Liability Management: uma aplicação de Algoritmos Genéticos à estruturação de estratégia de investimentos para o setor de seguros.
+## BibTeX
+
+     @misc{jose2023insurance,
+    author = {José, P. S.},
+    title = {Insurance Asset Liability Management: uma aplicação de Algoritmos Genéticos à estruturação de estratégia de investimentos para o setor de seguros},
+    year = {2023},
+    DOI = {00.0000/zenodo.0000000},
+    publisher = {Zenodo},
+    url = {https://doi.org/00.0000/zenodo.0000000}
+}
+
+## APA
+    José, P.S.(2023), Insurance Asset Liability Management: uma aplicação de Algoritmos Genéticos à estruturação de estratégia de investimentos para o setor de seguros.
