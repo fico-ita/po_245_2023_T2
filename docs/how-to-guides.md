@@ -5,7 +5,7 @@ fornecido neste projeto.
 
 ## How To: Atualizar a curva de pagamentos?
 
-No módulo principal *alm_insurance.py*, insira os novos valores na variável **pagamento** para os 12 meses considerados. Caso a opção seja a geração estocástica de valores, modifique também esta variável.
+No módulo principal *alm_insurance.py*, insira os novos valores na variável **pagamento** para os 12 meses considerados. Caso a opção seja a geração estocástica de valores, modifique também nesta variável.
 
     # alm_insurance.py
     pagamento = [0.29, 0.20, 0.12, 0.07, 0.06, 0.05, 0.07, 0.06, 0.04, 0.01, 0.02, 0.01]
@@ -35,7 +35,7 @@ Seguindo no módulo principal *alm_insurance.py*, altere o valor da variável *v
 considerando o módulo *alm_insurance.py*, altere os parâmetros:
 
 1. sol_per_pop: caso queria alterar a quantidade de soluções por população;
-1. num_parents_mating: caso queia alterar a quantidade de pais selecionados;
+1. num_parents_mating: caso queira alterar a quantidade de pais selecionados;
 1. n_mut: a quantidade de mutações definida;
 1. num_generations: a quantidade máxima de gerações;
 1. valor_max: o valor máximo a ser alocado em cada alternativa de investimentos.

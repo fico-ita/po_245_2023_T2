@@ -5,7 +5,7 @@ Investimentos Sistemáticos.
 
 # Projeto
 
-Nest repositório, você encontrará o código para Insurance Asset Liability Management:
+Neste repositório, você encontrará o código para Insurance Asset Liability Management:
 uma aplicação de Algoritmos Genéticos à estruturação de estratégia de investimentos
 para o setor de seguros. O projeto é baseado na pesquisa de [José(2023)](https://github.com/fico-ita/po_245_2023_T2/blob/developer/README.md).
 

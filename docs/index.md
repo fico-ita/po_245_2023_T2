@@ -33,7 +33,7 @@ Projeto licenciado [Apache License 2.0](https://www.apache.org/licenses/LICENSE-
 
 ## Agradecimento
 
-O autor do projeto deixa regisrtado os agradecimentos aos professores da disciplina e aos colegas por toda contribuição oferecida para o desenvolvimento deste projeto.
+O autor do projeto deixa registrado os agradecimentos aos professores da disciplina e aos colegas por toda contribuição oferecida para o desenvolvimento deste projeto.
 
 ## Como citar
 
