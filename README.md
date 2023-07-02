@@ -29,8 +29,8 @@ Dado que este projeto foi desenvolvido para fins acadêmicos e de pesquisa, é d
     year = {2023},
     DOI = {00.0000/zenodo.0000000},
     publisher = {Zenodo},
-    url = {https://doi.org/00.0000/zenodo.0000000}
-}
+    url = {https://doi.org/00.0000/zenodo.0000000}}
+
 
 ## APA
     José, P.S.(2023), Insurance Asset Liability Management: uma aplicação de Algoritmos Genéticos à estruturação de estratégia de investimentos para o setor de seguros.
