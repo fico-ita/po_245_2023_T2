@@ -1,15 +1,4 @@
-This part of the project documentation focuses on a **learning-oriented** approach.
-You'll learn how to get started with the code in this project.
+Esta parte da documentação do projeto centra-se numa abordagem **orientada para a aprendizagem**.
+Você aprenderá como começar a utilizar o código deste projeto.
 
-Expand this section by considering the following points:
-
-- Help newcomers with getting started
-- Teach readers about your library by making them write code
-- Inspire confidence through examples that work for everyone, repeatably
-- Give readers an immediate sense of achievement
-- Show concrete examples, no abstractions
-- Provide the minimum necessary explanation
-- Avoid any distractions
-
-!!! warning
-    Faça ao menos 1 tutorial com jupyter notebook.
+O tutorial foi desenvolvido em Jupyter Notebook e pode ser encontrado na seguinte seção: [tutorials](https://github.com/fico-ita/po_245_2023_T2/tree/developer/docs/tutorials)
